@@ -3,9 +3,9 @@ import * as is from '../utils/is.js';
 import assert from '../utils/assert.js';
 
 export default class RTCPeerConnectionIceEvent extends Event {
-
-  constructor(type, options) {
-    super(type, options);
+  candidate?: RTCIceCandidate | null
+  constructor(type: string, options: { candidate?: RTCIceCandidate | null }) {
+    super(type);
 
     assert(
       is.object(options) || is.undefined(options),
@@ -15,8 +15,8 @@ export default class RTCPeerConnectionIceEvent extends Event {
     const { candidate } = options || {};
     assert(
       is.undefined(candidate) ||
-        is.null(candidate) ||
-        candidate instanceof RTCIceCandidate,
+      is.null(candidate) ||
+      candidate instanceof RTCIceCandidate,
       `'${candidate}' is not a valid value for candidate`
     );
 

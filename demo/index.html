@@ -1,0 +1,10 @@
+<script type="module" src="./main.js"></script>
+<h1>TEST COMLINK & WebRTC</h1>
+<button onclick="getLocalOffer().catch(console.error)">getLocalOffer</button>
+<textarea id="offerIO" cols="30" rows="10"></textarea>
+<hr>
+<button onclick="setRemoteOffer().catch(console.error)">setRemoteOffer</button>
+<textarea id="anwserIO" cols="30" rows="10"></textarea>
+<hr>
+<textarea id="messageInput" cols="30" rows="10"></textarea>
+<button onclick="sendMsg()">SEND</button>

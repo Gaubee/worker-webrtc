@@ -19,7 +19,8 @@
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.2",
     "selenium-webdriver": "^4.0.0-alpha.1",
-    "serve-static": "^1.13.1"
+    "serve-static": "^1.13.1",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "test": "npm run build-test && node test/webdriver.js | faucet",
