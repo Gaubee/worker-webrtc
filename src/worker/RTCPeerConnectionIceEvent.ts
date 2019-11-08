@@ -1,30 +1,14 @@
-import RTCIceCandidate from './RTCIceCandidate.js';
-import * as is from '../utils/is.js';
-import assert from '../utils/assert.js';
+import { WorkerRTCIceCandidate } from './RTCIceCandidate.js';
 
-export default class RTCPeerConnectionIceEvent extends Event {
-  candidate?: RTCIceCandidate | null
-  constructor(type: string, options: { candidate?: RTCIceCandidate | null }) {
-    super(type);
+export class WorkerRTCPeerConnectionIceEvent extends Event {
+  public readonly candidate?: WorkerRTCIceCandidate
 
-    assert(
-      is.object(options) || is.undefined(options),
-      `'${options}' is not an object`
-    );
-
-    const { candidate } = options || {};
-    assert(
-      is.undefined(candidate) ||
-      is.null(candidate) ||
-      candidate instanceof RTCIceCandidate,
-      `'${candidate}' is not a valid value for candidate`
-    );
-
-    this.candidate = candidate || null;
+  constructor(private config: WorkerWebRTC.RTCPeerConnectionIceEventConfig) {
+    super(config.type);
+    this.candidate = config.candidate && new WorkerRTCIceCandidate(config.candidate)
   }
 
   get [Symbol.toStringTag]() {
     return 'RTCPeerConnectionIceEvent';
   }
-
 }

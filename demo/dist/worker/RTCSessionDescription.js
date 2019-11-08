@@ -1,15 +1,11 @@
-import { RTCSdpType } from './enums.js';
-import * as is from '../utils/is.js';
-import assert from '../utils/assert.js';
-export default class RTCSessionDescription {
-    constructor(descriptionInitDict) {
-        assert(is.undefined(descriptionInitDict) || is.object(descriptionInitDict), `'${descriptionInitDict}' is not an object`);
-        const { type, sdp } = descriptionInitDict || {};
-        assert(is.undefined(type) ||
-            is.includes(RTCSdpType, type), `'${type}' is not a valid value for type`);
-        this.type = type || '';
-        this.sdp = String(sdp || '');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class WorkerRTCSessionDescription {
+    constructor(config) {
+        this.config = config;
     }
+    get type() { return this.config.type; }
+    get sdp() { return this.config.sdp; }
     get [Symbol.toStringTag]() {
         return 'RTCSessionDescription';
     }
@@ -20,3 +16,4 @@ export default class RTCSessionDescription {
         };
     }
 }
+exports.WorkerRTCSessionDescription = WorkerRTCSessionDescription;

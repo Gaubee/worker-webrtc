@@ -17,7 +17,7 @@ export function installMaster(Comlink) {
         canHandle: obj => obj instanceof RTCDataChannelEvent,
         serialize: event => {
             const [tEvent, ts1] = Comlink.transferHandlers.get("Event").serialize(event);
-            const [channel, ts2] = Comlink.transferHandlers.get('MasterRTCDataChannel').serialize(event.channel)
+            const [channel, ts2] = Comlink.transferHandlers.get('MasterRTCDataChannel').serialize(event.channel);
             tEvent.channel = channel;
             return [tEvent, ts1.concat(ts2)];
         }
@@ -35,10 +35,9 @@ export function installMaster(Comlink) {
         /**@param {RTCCertificate} cert */
         serialize: cert => {
             return [{
-                expires: cert.expires,
-                fingerprints: cert.getFingerprints()
-            }, []];
+                    expires: cert.expires,
+                    fingerprints: cert.getFingerprints()
+                }, []];
         }
     });
-
 }

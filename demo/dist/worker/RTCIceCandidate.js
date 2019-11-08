@@ -1,12 +1,8 @@
-import * as is from '../utils/is.js';
-import assert from '../utils/assert.js';
-export default class RTCIceCandidate {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class WorkerRTCIceCandidate {
     constructor(config) {
         this.config = config;
-        assert(arguments.length, 'Not enough arguments');
-        assert(is.undefined(config) || is.object(config), `'${config}' is not an object`);
-        const { candidate } = config || {};
-        assert(!is.undefined(candidate), `'${candidate}' is not a valid value for candidate`);
     }
     get candidate() { return this.config.candidate; }
     get component() { return this.config.component; }
@@ -34,3 +30,4 @@ export default class RTCIceCandidate {
         };
     }
 }
+exports.WorkerRTCIceCandidate = WorkerRTCIceCandidate;

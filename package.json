@@ -25,5 +25,8 @@
   "scripts": {
     "test": "npm run build-test && node test/webdriver.js | faucet",
     "build-test": "rollup -c"
+  },
+  "dependencies": {
+    "comlink": "^4.1.0"
   }
 }

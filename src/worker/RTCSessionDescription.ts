@@ -1,26 +1,10 @@
-import { RTCSdpType } from './enums.js';
-import * as is from '../utils/is.js';
-import assert from '../utils/assert.js';
 
-export default class RTCSessionDescription {
-  type: string
-  sdp: string
+export class WorkerRTCSessionDescription {
+  get type() { return this.config.type }
+  get sdp() { return this.config.sdp }
 
-  constructor(descriptionInitDict: RTCSessionDescriptionInit) {
-    assert(
-      is.undefined(descriptionInitDict) || is.object(descriptionInitDict),
-      `'${descriptionInitDict}' is not an object`
-    );
-    const { type, sdp } = descriptionInitDict || {};
+  constructor(private config: WorkerWebRTC.RTCSessionDescriptionConfig) {
 
-    assert(
-      is.undefined(type) ||
-      is.includes(RTCSdpType, type),
-      `'${type}' is not a valid value for type`
-    );
-
-    this.type = type || '';
-    this.sdp = String(sdp || '');
   }
 
 
